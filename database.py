@@ -1,10 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# 🔥 Direct Render PostgreSQL URL yaha paste karo
-DATABASE_URL = "postgresql+psycopg2://cn_project_user:rama@dpg-d8iijncm0tmc73bljvkg-a.ohio-postgres.render.com/cn_project"
+DATABASE_URL = "postgresql+psycopg2://cn_user:lkpeelmlhAbVZ2L6VMBteKCosPDZcLDH@dpg-d8imosl8nd3s73dovc4g-a/cn"
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 
 SessionLocal = sessionmaker(
     autocommit=False,
@@ -14,9 +13,8 @@ SessionLocal = sessionmaker(
 
 Base = declarative_base()
 
-# Connection test
 try:
-    with engine.connect() as connection:
-        print("✅ PostgreSQL Connected Successfully!")
+    with engine.connect() as conn:
+        print("✅ DB Connected Successfully")
 except Exception as e:
-    print("❌ Connection Failed:", e)
+    print("❌ DB Connection Failed:", e)
