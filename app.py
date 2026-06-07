@@ -22,7 +22,7 @@ def get_db():
 
 @app.get("/")
 def home():
-    return {"message": "FastAPI Auth API Running"}
+    return {"message": "WELCOME GOLU SHARMA"}
 
 
 # Register API
