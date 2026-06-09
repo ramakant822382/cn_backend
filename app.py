@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from fastapi.middleware.cors import CORSMiddleware
 from database import SessionLocal, engine, Base
 from models import User
 from schemas import UserRegister, UserLogin
@@ -9,7 +9,18 @@ from schemas import UserRegister, UserLogin
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+origins = [
+    "http://localhost:5173",            # local development
+    "https://cn-project-phi.vercel.app/",      # Vercel frontend URL
+]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Database Session
 def get_db():
@@ -22,7 +33,7 @@ def get_db():
 
 @app.get("/")
 def home():
-    return {"message": "WELCOME GOLU SHARMA"}
+    return {"message": "WELCOME TO CN-PROJECT-BACKEND! welcome ssrgsp"}
 
 
 # Register API
