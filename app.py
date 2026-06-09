@@ -11,7 +11,7 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 origins = [
     "http://localhost:5173",            # local development
-    "https://cn-project-phi.vercel.app/",      # Vercel frontend URL
+    "https://cn-project-phi.vercel.app/signup",      # Vercel frontend URL
 ]
 
 app.add_middleware(
